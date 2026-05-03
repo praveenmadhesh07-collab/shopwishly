@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wishly — Where Style Meets Luck</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#1a3d2e;
+  --green-mid:#2a5940;
+  --green-light:#3d7a57;
+  --green-faint:#eef4f0;
+  --cream:#faf6ef;
+  --cream-dark:#f0e8d8;
+  --gold:#b8962e;
+  --gold-light:#d4ac3a;
+  --gold-faint:#fdf8ec;
+  --white:#ffffff;
+  --text-dark:#1a1a1a;
+  --text-mid:#4a4a4a;
+  --text-light:#8a8a8a;
+  --border:#e8e2d8;
+  --font-serif:'Cormorant Garamond',serif;
+  --font-sans:'Jost',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--cream);color:var(--text-dark);overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--green-light);border-radius:2px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,246,239,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:all 0.3s}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:72px}
+.logo{font-family:var(--font-serif);font-size:2rem;font-weight:600;color:var(--green);letter-spacing:0.08em;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo-leaf{font-size:1.2rem;color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;font-weight:500;transition:color 0.2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s}
+.nav-links a:hover{color:var(--green)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:1.2rem}
+.nav-icon{background:none;border:none;cursor:pointer;color:var(--text-dark);font-size:1rem;padding:8px;border-radius:50%;transition:all 0.2s;position:relative}
+.nav-icon:hover{background:var(--green-faint);color:var(--green)}
+.cart-badge{position:absolute;top:2px;right:2px;background:var(--gold);color:white;font-size:0.6rem;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600}
+.search-bar{display:flex;align-items:center;background:var(--white);border:1px solid var(--border);border-radius:24px;padding:6px 16px;gap:8px;width:200px;transition:all 0.3s}
+.search-bar:focus-within{border-color:var(--green);width:240px}
+.search-bar input{border:none;outline:none;font-family:var(--font-sans);font-size:0.8rem;color:var(--text-dark);background:transparent;width:100%}
+.search-bar input::placeholder{color:var(--text-light)}
+
+/* HERO */
+.hero{margin-top:72px;min-height:90vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{background:var(--green);display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem;position:relative;overflow:hidden}
+.hero-left::before{content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;border:1px solid rgba(184,150,46,0.15);border-radius:50%}
+.hero-left::after{content:'';position:absolute;bottom:-80px;right:-60px;width:300px;height:300px;border:1px solid rgba(184,150,46,0.1);border-radius:50%}
+.hero-tag{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1.5rem;font-weight:500}
+.hero-title{font-family:var(--font-serif);font-size:4.5rem;font-weight:300;color:var(--white);line-height:1.1;margin-bottom:1.5rem}
+.hero-title em{font-style:italic;color:var(--gold-light)}
+.hero-tagline{font-size:0.85rem;letter-spacing:0.1em;color:rgba(255,255,255,0.6);margin-bottom:3rem;font-weight:300}
+.hero-ctas{display:flex;gap:1rem;align-items:center}
+.btn-primary{background:var(--gold);color:var(--white);border:none;padding:14px 32px;font-family:var(--font-sans);font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-weight:500;border-radius:2px;transition:all 0.3s}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.4);padding:14px 32px;font-family:var(--font-sans);font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-weight:500;border-radius:2px;transition:all 0.3s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-right{background:var(--cream-dark);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-image-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#e8dcc8 0%,#d4c5a9 50%,#c8b896 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem}
+.hero-model-silhouette{width:200px;height:380px;background:var(--green);opacity:0.15;border-radius:100px 100px 0 0;position:relative}
+.hero-model-silhouette::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:60px;height:60px;background:var(--green);opacity:1;border-radius:50%}
+.hero-badge{position:absolute;bottom:40px;right:40px;background:var(--white);padding:16px 20px;border-radius:4px;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+.hero-badge p{font-size:0.75rem;color:var(--text-light);margin-bottom:4px}
+.hero-badge strong{font-family:var(--font-serif);font-size:1.3rem;color:var(--green);font-weight:600}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-light);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:var(--gold);opacity:0.5;animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* PROMO BANNER */
+.promo-banner{background:var(--gold);padding:12px;text-align:center}
+.promo-banner p{font-size:0.78rem;letter-spacing:0.15em;color:var(--white);text-transform:uppercase;font-weight:500}
+.promo-banner span{text-decoration:underline;cursor:pointer}
+
+/* SECTION STYLES */
+section{padding:5rem 2rem}
+.section-inner{max-width:1400px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:3.5rem}
+.section-tag{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;font-weight:500}
+.section-title{font-family:var(--font-serif);font-size:2.8rem;font-weight:300;color:var(--green);line-height:1.2}
+.section-title em{font-style:italic}
+.section-sub{font-size:0.85rem;color:var(--text-light);margin-top:0.8rem;letter-spacing:0.05em}
+
+/* CATEGORIES */
+.categories{background:var(--white)}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.cat-card{border-radius:4px;overflow:hidden;cursor:pointer;position:relative;height:320px;transition:transform 0.3s}
+.cat-card:hover{transform:translateY(-4px)}
+.cat-card:first-child{grid-column:span 2;height:420px}
+.cat-bg{width:100%;height:100%;display:flex;align-items:flex-end;position:relative}
+.cat-bg-1{background:linear-gradient(160deg,#2a5940 0%,#1a3d2e 100%)}
+.cat-bg-2{background:linear-gradient(160deg,#8b6914 0%,#5c4510 100%)}
+.cat-bg-3{background:linear-gradient(160deg,#3d5a4a 0%,#2a4035 100%)}
+.cat-bg-4{background:linear-gradient(160deg,#4a3520 0%,#2e2010 100%)}
+.cat-bg-5{background:linear-gradient(160deg,#1a3d2e 0%,#0f2319 100%)}
+.cat-decor{position:absolute;top:30px;right:30px;width:80px;height:80px;border:1px solid rgba(184,150,46,0.3);border-radius:50%}
+.cat-info{padding:24px;color:white;position:relative;z-index:2}
+.cat-info h3{font-family:var(--font-serif);font-size:1.6rem;font-weight:400;margin-bottom:4px}
+.cat-info p{font-size:0.75rem;color:rgba(255,255,255,0.6);letter-spacing:0.1em}
+.cat-arrow{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light)}
+
+/* NEW ARRIVALS */
+.new-arrivals{background:var(--cream)}
+.new-tag{display:inline-block;background:var(--gold-faint);color:var(--gold);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:4px 10px;border-radius:2px;font-weight:500;margin-bottom:8px}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.product-card{background:var(--white);border-radius:4px;overflow:hidden;cursor:pointer;transition:all 0.3s;border:1px solid var(--border)}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(26,61,46,0.1)}
+.product-img{height:320px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.product-img-1{background:linear-gradient(135deg,#e8dcc8,#d4c09a)}
+.product-img-2{background:linear-gradient(135deg,#c5d5ca,#a8c0b0)}
+.product-img-3{background:linear-gradient(135deg,#d5c8d8,#bca8c0)}
+.product-img-4{background:linear-gradient(135deg,#d8c8be,#c0a898)}
+.product-img-5{background:linear-gradient(135deg,#cad5c8,#a8bda8)}
+.product-img-6{background:linear-gradient(135deg,#d8d0c8,#c0b8a8)}
+.product-img-7{background:linear-gradient(135deg,#c8d0d8,#a8b8c0)}
+.product-img-8{background:linear-gradient(135deg,#d8cac8,#c0a8a8)}
+.product-silhouette{width:100px;height:200px;background:rgba(26,61,46,0.15);border-radius:60px 60px 0 0;position:relative}
+.product-silhouette::before{content:'';position:absolute;top:-25px;left:50%;transform:translateX(-50%);width:30px;height:30px;background:rgba(26,61,46,0.15);border-radius:50%}
+.product-actions{position:absolute;bottom:0;left:0;right:0;display:flex;gap:0;transform:translateY(100%);transition:transform 0.3s}
+.product-card:hover .product-actions{transform:translateY(0)}
+.btn-cart{flex:1;background:var(--green);color:white;border:none;padding:12px;font-family:var(--font-sans);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:background 0.2s}
+.btn-cart:hover{background:var(--green-mid)}
+.btn-wish{width:48px;background:var(--white);color:var(--text-dark);border:none;border-left:1px solid var(--border);cursor:pointer;font-size:1rem;transition:all 0.2s}
+.btn-wish:hover{background:var(--cream);color:var(--gold)}
+.product-badges{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:6px}
+.badge{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;padding:4px 8px;border-radius:2px;font-weight:600}
+.badge-new{background:var(--green);color:white}
+.badge-sale{background:var(--gold);color:white}
+.badge-low{background:#e85d3d;color:white}
+.product-info{padding:16px}
+.product-name{font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--text-dark);margin-bottom:4px}
+.product-type{font-size:0.72rem;color:var(--text-light);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+.product-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.product-price{font-size:1rem;font-weight:600;color:var(--green)}
+.product-price-old{font-size:0.85rem;color:var(--text-light);text-decoration:line-through;margin-left:6px}
+.product-stars{display:flex;align-items:center;gap:4px}
+.stars{color:var(--gold);font-size:0.75rem;letter-spacing:1px}
+.review-count{font-size:0.72rem;color:var(--text-light)}
+.stock-bar{margin-top:8px}
+.stock-label{font-size:0.7rem;color:#e85d3d;font-weight:500;margin-bottom:4px;display:flex;align-items:center;gap:4px}
+.stock-label::before{content:'';display:inline-block;width:6px;height:6px;background:#e85d3d;border-radius:50%;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.stock-track{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.stock-fill{height:100%;background:#e85d3d;border-radius:2px}
+.size-dots{display:flex;gap:4px;margin-top:10px}
+.size-dot{font-size:0.65rem;border:1px solid var(--border);padding:3px 7px;border-radius:2px;color:var(--text-mid);cursor:pointer;transition:all 0.2s}
+.size-dot:hover{border-color:var(--green);color:var(--green)}
+
+/* PROMO STRIPS */
+.promo-strip{background:var(--green);padding:4rem 2rem}
+.promo-strip-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;align-items:center;gap:0}
+.promo-item{text-align:center;padding:0 2rem}
+.promo-divider{background:rgba(255,255,255,0.15);height:60px}
+.promo-icon{font-size:1.5rem;margin-bottom:0.8rem;color:var(--gold-light)}
+.promo-item h4{font-family:var(--font-serif);font-size:1.2rem;color:white;font-weight:400;margin-bottom:4px}
+.promo-item p{font-size:0.78rem;color:rgba(255,255,255,0.55);letter-spacing:0.05em}
+
+/* INSTAGRAM */
+.instagram{background:var(--white)}
+.insta-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.insta-item{aspect-ratio:1;overflow:hidden;cursor:pointer;position:relative}
+.insta-item:hover .insta-overlay{opacity:1}
+.insta-item:nth-child(1){background:linear-gradient(135deg,#2a5940,#1a3d2e)}
+.insta-item:nth-child(2){background:linear-gradient(135deg,#8b6914,#5c4510)}
+.insta-item:nth-child(3){background:linear-gradient(135deg,#3d5a4a,#1a3d2e)}
+.insta-item:nth-child(4){background:linear-gradient(135deg,#4a3520,#2e2010)}
+.insta-item:nth-child(5){background:linear-gradient(135deg,#1a4d35,#0f2a1e)}
+.insta-item:nth-child(6){background:linear-gradient(135deg,#6b4d20,#4a3010)}
+.insta-overlay{position:absolute;inset:0;background:rgba(26,61,46,0.7);opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem}
+.insta-decor{width:60%;height:60%;border:1px solid rgba(184,150,46,0.3);border-radius:4px}
+
+/* CART SIDEBAR */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.cart-overlay.open{opacity:1;pointer-events:all}
+.cart-sidebar{position:fixed;right:0;top:0;bottom:0;width:400px;background:var(--white);z-index:201;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column}
+.cart-sidebar.open{transform:translateX(0)}
+.cart-header{padding:24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.cart-header h3{font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--green)}
+.cart-close{background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--text-mid);padding:4px}
+.cart-body{flex:1;overflow-y:auto;padding:24px}
+.cart-empty{text-align:center;padding:3rem 0;color:var(--text-light)}
+.cart-empty p{font-family:var(--font-serif);font-size:1.2rem;margin-bottom:1rem}
+.cart-item{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid var(--border)}
+.cart-item-img{width:80px;height:100px;border-radius:2px;flex-shrink:0}
+.cart-item-img-1{background:linear-gradient(135deg,#e8dcc8,#d4c09a)}
+.cart-item-img-2{background:linear-gradient(135deg,#c5d5ca,#a8c0b0)}
+.cart-item-info{flex:1}
+.cart-item-name{font-family:var(--font-serif);font-size:1rem;margin-bottom:4px}
+.cart-item-size{font-size:0.72rem;color:var(--text-light);letter-spacing:0.08em;margin-bottom:8px}
+.cart-item-price{font-weight:600;color:var(--green);font-size:0.9rem}
+.cart-qty{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qty-btn{background:var(--cream);border:1px solid var(--border);width:28px;height:28px;border-radius:2px;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center}
+.qty-num{font-size:0.85rem;font-weight:500;min-width:20px;text-align:center}
+.cart-footer{padding:24px;border-top:1px solid var(--border)}
+.cart-total{display:flex;justify-content:space-between;margin-bottom:16px;font-family:var(--font-serif);font-size:1.1rem}
+.cart-total strong{color:var(--green);font-weight:600}
+.checkout-btn{width:100%;background:var(--green);color:white;border:none;padding:16px;font-family:var(--font-sans);font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-weight:500;border-radius:2px;transition:background 0.2s;margin-bottom:8px}
+.checkout-btn:hover{background:var(--green-mid)}
+.payment-icons{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.payment-icon{background:var(--cream);border:1px solid var(--border);border-radius:3px;padding:4px 8px;font-size:0.65rem;color:var(--text-mid);font-weight:600;letter-spacing:0.05em}
+
+/* FILTERS */
+.filters-bar{background:var(--white);border-bottom:1px solid var(--border);padding:16px 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.filter-btn{background:none;border:1px solid var(--border);padding:8px 16px;border-radius:2px;font-family:var(--font-sans);font-size:0.75rem;letter-spacing:0.08em;cursor:pointer;color:var(--text-mid);transition:all 0.2s;display:flex;align-items:center;gap:6px}
+.filter-btn.active{background:var(--green);color:white;border-color:var(--green)}
+.filter-btn:hover:not(.active){border-color:var(--green);color:var(--green)}
+.filter-label{font-size:0.75rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-right:0.5rem}
+.filter-chip{background:var(--green-faint);border:1px solid var(--green);color:var(--green);padding:4px 10px;border-radius:2px;font-size:0.7rem;cursor:pointer;transition:all 0.2s}
+.filter-chip.active{background:var(--green);color:white}
+
+/* REVIEWS */
+.reviews-section{background:var(--cream-dark)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.review-card{background:var(--white);padding:24px;border-radius:4px;border:1px solid var(--border)}
+.review-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.reviewer-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:1rem;font-weight:600;color:white}
+.avatar-1{background:var(--green)}
+.avatar-2{background:var(--gold)}
+.avatar-3{background:var(--green-light)}
+.reviewer-info h4{font-size:0.85rem;font-weight:500;margin-bottom:2px}
+.reviewer-info p{font-size:0.7rem;color:var(--text-light)}
+.review-text{font-size:0.85rem;color:var(--text-mid);line-height:1.7;font-style:italic}
+.review-product{font-size:0.72rem;color:var(--gold);margin-top:10px;font-weight:500}
+
+/* NEWSLETTER */
+.newsletter{background:var(--green);padding:5rem 2rem;text-align:center}
+.newsletter h2{font-family:var(--font-serif);font-size:2.5rem;color:white;font-weight:300;margin-bottom:1rem}
+.newsletter p{font-size:0.85rem;color:rgba(255,255,255,0.6);margin-bottom:2rem;letter-spacing:0.05em}
+.newsletter-form{display:flex;gap:0;max-width:480px;margin:0 auto;border-radius:2px;overflow:hidden}
+.newsletter-form input{flex:1;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-right:none;padding:14px 20px;font-family:var(--font-sans);font-size:0.85rem;color:white;outline:none}
+.newsletter-form input::placeholder{color:rgba(255,255,255,0.4)}
+.newsletter-form button{background:var(--gold);color:white;border:none;padding:14px 24px;font-family:var(--font-sans);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:background 0.2s;white-space:nowrap}
+.newsletter-form button:hover{background:var(--gold-light)}
+
+/* FOOTER */
+footer{background:var(--text-dark);padding:4rem 2rem 2rem}
+.footer-inner{max-width:1400px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .logo{font-size:1.8rem;color:var(--gold-light)}
+.footer-brand p{font-size:0.82rem;color:rgba(255,255,255,0.45);margin-top:1rem;line-height:1.7}
+.footer-col h4{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1.2rem;font-weight:500}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.7rem}
+.footer-col ul li a{font-size:0.82rem;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--gold-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between}
+.footer-bottom p{font-size:0.75rem;color:rgba(255,255,255,0.3);letter-spacing:0.05em}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300;opacity:0;pointer-events:none;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center;padding:2rem}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--white);border-radius:4px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr}
+.modal-img{background:linear-gradient(135deg,#e8dcc8,#c8b896);display:flex;align-items:center;justify-content:center;min-height:400px;position:relative}
+.modal-tag-badge{position:absolute;top:20px;left:20px}
+.modal-body{padding:2.5rem;display:flex;flex-direction:column}
+.modal-close{align-self:flex-end;background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--text-light);padding:4px;margin-bottom:1rem}
+.modal-name{font-family:var(--font-serif);font-size:2rem;font-weight:400;color:var(--green);margin-bottom:8px}
+.modal-type{font-size:0.75rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px}
+.modal-stars{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.modal-price{font-size:1.5rem;font-weight:600;color:var(--green);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.modal-price-old{font-size:1rem;color:var(--text-light);text-decoration:line-through;font-weight:400}
+.modal-stock{display:flex;align-items:center;gap:6px;font-size:0.8rem;color:#e85d3d;font-weight:500;margin-bottom:20px}
+.modal-stock-dot{width:8px;height:8px;background:#e85d3d;border-radius:50%;animation:pulse 1.5s infinite}
+.size-label{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);margin-bottom:8px;font-weight:500}
+.size-options{display:flex;gap:8px;margin-bottom:24px}
+.size-opt{border:1px solid var(--border);padding:8px 14px;border-radius:2px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);transition:all 0.2s;background:white}
+.size-opt:hover,.size-opt.active{border-color:var(--green);background:var(--green);color:white}
+.modal-actions{display:flex;gap:8px;margin-bottom:20px}
+.modal-add-cart{flex:1;background:var(--green);color:white;border:none;padding:14px;font-family:var(--font-sans);font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-weight:500;border-radius:2px;transition:background 0.2s}
+.modal-add-cart:hover{background:var(--green-mid)}
+.modal-wishlist{width:48px;border:1px solid var(--border);background:white;cursor:pointer;border-radius:2px;font-size:1rem;transition:all 0.2s}
+.modal-wishlist:hover{border-color:var(--gold);color:var(--gold)}
+.modal-desc{font-size:0.82rem;color:var(--text-mid);line-height:1.8;border-top:1px solid var(--border);padding-top:16px}
+
+/* NOTIFICATION */
+.notification{position:fixed;bottom:2rem;right:2rem;background:var(--green);color:white;padding:14px 20px;border-radius:4px;font-size:0.82rem;transform:translateY(100px);opacity:0;transition:all 0.4s;z-index:500;max-width:300px;display:flex;align-items:center;gap:10px}
+.notification.show{transform:translateY(0);opacity:1}
+.notification-icon{font-size:1rem}
+
+/* ACCOUNT MODAL */
+.account-modal{background:var(--white);border-radius:4px;max-width:420px;width:100%;padding:2.5rem}
+.account-tabs{display:flex;margin-bottom:2rem;border-bottom:1px solid var(--border)}
+.account-tab{flex:1;padding:12px;background:none;border:none;cursor:pointer;font-family:var(--font-sans);font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);font-weight:500;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s}
+.account-tab.active{color:var(--green);border-bottom-color:var(--green)}
+.form-group{margin-bottom:1.2rem}
+.form-group label{display:block;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-mid);margin-bottom:6px;font-weight:500}
+.form-group input{width:100%;border:1px solid var(--border);padding:12px 14px;font-family:var(--font-sans);font-size:0.85rem;border-radius:2px;outline:none;transition:border-color 0.2s;background:var(--white)}
+.form-group input:focus{border-color:var(--green)}
+.form-submit{width:100%;background:var(--green);color:white;border:none;padding:14px;font-family:var(--font-sans);font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-weight:500;border-radius:2px;transition:background 0.2s;margin-top:0.5rem}
+.form-submit:hover{background:var(--green-mid)}
+.divider-text{text-align:center;position:relative;margin:1.5rem 0;font-size:0.75rem;color:var(--text-light)}
+.divider-text::before,.divider-text::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--border)}
+.divider-text::before{left:0}
+.divider-text::after{right:0}
+
+/* WISHLIST COUNTER */
+.wishlist-badge{background:var(--gold);color:white;font-size:0.6rem;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;position:absolute;top:2px;right:2px}
+
+/* BACK TO TOP */
+.back-top{position:fixed;bottom:2rem;left:2rem;width:44px;height:44px;background:var(--green);color:white;border:none;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all 0.3s;z-index:100}
+.back-top.show{opacity:1;pointer-events:all}
+.back-top:hover{background:var(--green-mid);transform:translateY(-2px)}
+
+/* SEARCH SUGGESTIONS */
+.search-suggestions{position:absolute;top:100%;left:0;right:0;background:white;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;box-shadow:0 8px 24px rgba(0,0,0,0.08);z-index:10;display:none}
+.search-wrap{position:relative}
+.search-wrap.active .search-suggestions{display:block}
+.suggestion-item{padding:10px 16px;font-size:0.82rem;color:var(--text-mid);cursor:pointer;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;transition:background 0.15s}
+.suggestion-item:last-child{border-bottom:none}
+.suggestion-item:hover{background:var(--green-faint)}
+.suggestion-icon{color:var(--gold);font-size:0.8rem}
+
+/* RESPONSIVE HINTS */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .cat-card:first-child{grid-column:span 2}
+  .products-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .reviews-grid{grid-template-columns:1fr}
+  .modal{grid-template-columns:1fr}
+  .modal-img{min-height:250px}
+  .insta-grid{grid-template-columns:repeat(3,1fr)}
+  .nav-links{display:none}
+  .promo-strip-inner{grid-template-columns:1fr;gap:2rem}
+  .promo-divider{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner">
+  <p>✦ Free shipping on orders above ₹999 &nbsp;|&nbsp; <span onclick="showNotif('🎉 Use code WISHLY15 for 15% off!')">Use code WISHLY15</span> for 15% off &nbsp;|&nbsp; New drop every Friday ✦</p>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#">
+      <span class="logo-leaf">✦</span> Wishly
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="scrollTo('new-arrivals')">New Arrivals</a></li>
+      <li><a href="#" onclick="scrollTo('collections')">Collections</a></li>
+      <li><a href="#" onclick="scrollTo('catalog')">Shop</a></li>
+      <li><a href="#">Sale</a></li>
+      <li><a href="#" onclick="scrollTo('about')">About</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-wrap" id="searchWrap">
+        <div class="search-bar">
+          <span style="color:var(--text-light);font-size:0.85rem">⌕</span>
+          <input type="text" placeholder="Search styles..." id="searchInput" oninput="handleSearch(this)" onfocus="document.getElementById('searchWrap').classList.add('active')" onblur="setTimeout(()=>document.getElementById('searchWrap').classList.remove('active'),200)">
+        </div>
+        <div class="search-suggestions" id="suggestions">
+          <div class="suggestion-item" onclick="searchItem('Floral Midi Dresses')"><span class="suggestion-icon">◈</span> Floral Midi Dresses</div>
+          <div class="suggestion-item" onclick="searchItem('Silk Kurta Sets')"><span class="suggestion-icon">◈</span> Silk Kurta Sets</div>
+          <div class="suggestion-item" onclick="searchItem('Co-ord Sets')"><span class="suggestion-icon">◈</span> Co-ord Sets</div>
+          <div class="suggestion-item" onclick="searchItem('Linen Summer Tops')"><span class="suggestion-icon">◈</span> Linen Summer Tops</div>
+        </div>
+      </div>
+      <button class="nav-icon" onclick="openAccount()" title="Account" style="position:relative">👤</button>
+      <button class="nav-icon" onclick="openWishlist()" title="Wishlist" style="position:relative">
+        ♡
+        <span class="wishlist-badge" id="wishBadge">2</span>
+      </button>
+      <button class="nav-icon" onclick="openCart()" title="Cart" style="position:relative">
+        🛍
+        <span class="cart-badge" id="cartBadge">3</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <p class="hero-tag">✦ New Collection · Summer 2026</p>
+    <h1 class="hero-title">Where <em>Style</em><br>Meets Luck</h1>
+    <p class="hero-tagline">Curated fashion for the modern woman</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+      <button class="btn-outline" onclick="document.getElementById('new-arrivals').scrollIntoView({behavior:'smooth'})">New Arrivals</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-placeholder">
+      <div class="hero-model-silhouette"></div>
+    </div>
+    <div class="hero-badge">
+      <p>New this week</p>
+      <strong>48 styles</strong>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="categories" id="collections" style="padding:4rem 2rem">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">✦ Browse By Category</p>
+      <h2 class="section-title">Shop <em>Collections</em></h2>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="filterCat('Dresses')">
+        <div class="cat-bg cat-bg-1 cat-bg">
+          <div class="cat-decor"></div>
+          <div class="cat-info">
+            <h3>Dresses</h3>
+            <p>124 styles</p>
+            <div class="cat-arrow">Shop now →</div>
+          </div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="filterCat('Tops')">
+        <div class="cat-bg cat-bg-2">
+          <div class="cat-info">
+            <h3>Tops & Blouses</h3>
+            <p>86 styles</p>
+            <div class="cat-arrow">Shop now →</div>
+          </div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="filterCat('Kurta')">
+        <div class="cat-bg cat-bg-3">
+          <div class="cat-info">
+            <h3>Ethnic Wear</h3>
+            <p>97 styles</p>
+            <div class="cat-arrow">Shop now →</div>
+          </div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="filterCat('Co-ord')">
+        <div class="cat-bg cat-bg-4">
+          <div class="cat-info">
+            <h3>Co-ord Sets</h3>
+            <p>42 styles</p>
+            <div class="cat-arrow">Shop now →</div>
+          </div>
+        </div>
+      </div>
+      <div class="cat-card" onclick="filterCat('Bottoms')">
+        <div class="cat-bg cat-bg-5">
+          <div class="cat-info">
+            <h3>Bottoms</h3>
+            <p>68 styles</p>
+            <div class="cat-arrow">Shop now →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section id="new-arrivals" style="background:var(--cream);padding:5rem 2rem">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">✦ Just Dropped</p>
+      <h2 class="section-title">New <em>Arrivals</em></h2>
+      <p class="section-sub">Fresh styles added every week — be the first to shop</p>
+    </div>
+    <div class="products-grid" id="newArrivalsGrid">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">
+  <div class="promo-strip-inner">
+    <div class="promo-item">
+      <div class="promo-icon">✈</div>
+      <h4>Free Shipping</h4>
+      <p>On all orders above ₹999</p>
+    </div>
+    <div class="promo-divider"></div>
+    <div class="promo-item">
+      <div class="promo-icon">↩</div>
+      <h4>Easy Returns</h4>
+      <p>7-day hassle-free returns</p>
+    </div>
+    <div class="promo-divider"></div>
+    <div class="promo-item">
+      <div class="promo-icon">🔒</div>
+      <h4>Secure Payments</h4>
+      <p>UPI, Cards, Wallets & NetBanking</p>
+    </div>
+  </div>
+</div>
+
+<!-- FULL CATALOG -->
+<section id="catalog" style="background:var(--white);padding:5rem 2rem">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">✦ Complete Collection</p>
+      <h2 class="section-title">All <em>Styles</em></h2>
+    </div>
+    <!-- FILTERS -->
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
+      <button class="filter-btn" onclick="setFilter(this,'Dresses')">Dresses</button>
+      <button class="filter-btn" onclick="setFilter(this,'Tops')">Tops</button>
+      <button class="filter-btn" onclick="setFilter(this,'Kurta')">Ethnic</button>
+      <button class="filter-btn" onclick="setFilter(this,'Co-ord')">Co-ord Sets</button>
+      <button class="filter-btn" onclick="setFilter(this,'Bottoms')">Bottoms</button>
+      <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+        <span class="filter-label">Sort:</span>
+        <select style="border:1px solid var(--border);padding:8px 12px;border-radius:2px;font-family:var(--font-sans);font-size:0.75rem;color:var(--text-mid);outline:none;cursor:pointer" onchange="sortProducts(this.value)">
+          <option value="default">Newest First</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="popular">Most Popular</option>
+        </select>
+      </div>
+    </div>
+    <div class="products-grid" id="catalogGrid"></div>
+    <div style="text-align:center;margin-top:3rem">
+      <button class="btn-primary" style="background:transparent;color:var(--green);border:1px solid var(--green)" onclick="showNotif('✦ Loading more styles...')">Load More Styles</button>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" style="padding:5rem 2rem" id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">✦ What She Said</p>
+      <h2 class="section-title">Customer <em>Stories</em></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="reviewer-avatar avatar-1">P</div>
+          <div class="reviewer-info">
+            <h4>Priya M.</h4>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <p class="review-text">"The quality is absolutely stunning. My Sage Wrap Dress arrived beautifully packaged and fits like a dream. I've received so many compliments!"</p>
+        <p class="review-product">✓ Verified Purchase · Sage Wrap Dress</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="reviewer-avatar avatar-2">A</div>
+          <div class="reviewer-info">
+            <h4>Aishwarya R.</h4>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <p class="review-text">"Wishly is my go-to for every occasion. The ethnic collection is so thoughtfully curated — you can feel the attention to detail in every stitch."</p>
+        <p class="review-product">✓ Verified Purchase · Ivory Kurta Set</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="reviewer-avatar avatar-3">N</div>
+          <div class="reviewer-info">
+            <h4>Nithya S.</h4>
+            <div class="stars">★★★★☆</div>
+          </div>
+        </div>
+        <p class="review-text">"Fast delivery and the packaging is so elegant — feels like unboxing a luxury brand. The co-ord set is exactly what I wanted for my office look."</p>
+        <p class="review-product">✓ Verified Purchase · Forest Co-ord Set</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM GALLERY -->
+<section class="instagram" style="padding:5rem 2rem">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-tag">✦ @wishly.in</p>
+      <h2 class="section-title">As Seen <em>On Instagram</em></h2>
+      <p class="section-sub">Tag us to be featured · #WishlyStyle</p>
+    </div>
+    <div class="insta-grid">
+      <div class="insta-item"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"><div class="insta-decor"></div></div><div class="insta-overlay">♡</div></div>
+      <div class="insta-item"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"><div class="insta-decor"></div></div><div class="insta-overlay">♡</div></div>
+      <div class="insta-item"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"><div class="insta-decor"></div></div><div class="insta-overlay">♡</div></div>
+      <div class="insta-item"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"><div class="insta-decor"></div></div><div class="insta-overlay">♡</div></div>
+      <div class="insta-item"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"><div class="insta-decor"></div></div><div class="insta-overlay">♡</div></div>
+      <div class="insta-item"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"><div class="insta-decor"></div></div><div class="insta-overlay">♡</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <h2>Stay in the <em style="font-style:italic">loop</em></h2>
+  <p>New drops, exclusive offers, restock alerts — straight to your inbox</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="Your email address">
+    <button onclick="showNotif('✦ Welcome to the Wishly family!')">Subscribe</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo" style="font-family:var(--font-serif);font-size:1.8rem;font-weight:600;color:var(--gold-light);letter-spacing:0.08em">✦ Wishly</div>
+        <p>Where style meets luck. Premium women's fashion crafted for the modern Indian woman. Curated with love, delivered with care.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Dresses</a></li>
+          <li><a href="#">Tops & Blouses</a></li>
+          <li><a href="#">Ethnic Wear</a></li>
+          <li><a href="#">Co-ord Sets</a></li>
+          <li><a href="#">Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns & Exchange</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Wishly. All rights reserved.</p>
+      <p>Made with ♡ for Indian women</p>
+    </div>
+  </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Bag</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-item">
+      <div class="cart-item-img cart-item-img-1"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">Sage Wrap Dress</div>
+        <div class="cart-item-size">Size: M · Colour: Sage Green</div>
+        <div class="cart-item-price">₹1,849</div>
+        <div class="cart-qty">
+          <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-item-img cart-item-img-2"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">Ivory Kurta Set</div>
+        <div class="cart-item-size">Size: S · Colour: Ivory</div>
+        <div class="cart-item-price">₹2,299</div>
+        <div class="cart-qty">
+          <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-item-img" style="background:linear-gradient(135deg,#d5c8d8,#bca8c0)"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">Mauve Co-ord Set</div>
+        <div class="cart-item-size">Size: L · Colour: Mauve</div>
+        <div class="cart-item-price">₹3,149</div>
+        <div class="cart-qty">
+          <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total</span>
+      <strong>₹7,297</strong>
+    </div>
+    <button class="checkout-btn" onclick="showNotif('🛍 Redirecting to secure checkout...')">Proceed to Checkout</button>
+    <div style="text-align:center;font-size:0.72rem;color:var(--text-light);margin-bottom:10px;letter-spacing:0.05em">Secure & encrypted payment</div>
+    <div class="payment-icons">
+      <span class="payment-icon">UPI</span>
+      <span class="payment-icon">VISA</span>
+      <span class="payment-icon">MC</span>
+      <span class="payment-icon">AMEX</span>
+      <span class="payment-icon">GPay</span>
+      <span class="payment-icon">PhonePe</span>
+      <span class="payment-icon">NetBanking</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="productModal" onclick="closeModal(event)">
+  <div class="modal" id="modalContent">
+    <div class="modal-img" id="modalImg">
+      <div class="modal-tag-badge">
+        <span class="badge badge-new">New</span>
+      </div>
+      <div class="product-silhouette" style="transform:scale(1.3)"></div>
+    </div>
+    <div class="modal-body">
+      <button class="modal-close" onclick="closeProductModal()">✕</button>
+      <p class="modal-type" id="modalType">Dress</p>
+      <h2 class="modal-name" id="modalName">Sage Wrap Dress</h2>
+      <div class="modal-stars">
+        <span class="stars">★★★★★</span>
+        <span style="font-size:0.75rem;color:var(--text-light)">(48 reviews)</span>
+      </div>
+      <div class="modal-price">
+        <span id="modalPrice">₹1,849</span>
+        <span class="modal-price-old" id="modalOld"></span>
+      </div>
+      <div class="modal-stock">
+        <div class="modal-stock-dot"></div>
+        <span id="modalStock">Only 5 left in stock</span>
+      </div>
+      <div class="size-label">Select Size</div>
+      <div class="size-options">
+        <button class="size-opt" onclick="selectSize(this)">XS</button>
+        <button class="size-opt active" onclick="selectSize(this)">S</button>
+        <button class="size-opt" onclick="selectSize(this)">M</button>
+        <button class="size-opt" onclick="selectSize(this)">L</button>
+        <button class="size-opt" onclick="selectSize(this)">XL</button>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-add-cart" onclick="addToCart()">Add to Bag</button>
+        <button class="modal-wishlist" onclick="addToWishlist()">♡</button>
+      </div>
+      <div class="modal-desc" id="modalDesc">
+        A beautifully draped wrap dress crafted from breathable cotton-blend fabric. Perfect for both casual outings and semi-formal occasions. Features an adjustable tie waist and flattering V-neckline. Hand wash recommended.
+      </div>
+      <div style="display:flex;gap:1rem;margin-top:16px;flex-wrap:wrap">
+        <span style="font-size:0.72rem;color:var(--text-light);display:flex;align-items:center;gap:4px">✈ Free shipping</span>
+        <span style="font-size:0.72rem;color:var(--text-light);display:flex;align-items:center;gap:4px">↩ 7-day returns</span>
+        <span style="font-size:0.72rem;color:var(--gold);cursor:pointer" onclick="showNotif('📏 Size guide opened')">📏 Size Guide</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACCOUNT MODAL -->
+<div class="modal-overlay" id="accountModal" onclick="closeAccountModal(event)">
+  <div class="account-modal" onclick="e=>e.stopPropagation()">
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <div style="font-family:var(--font-serif);font-size:1.8rem;color:var(--green);font-weight:600">✦ Wishly</div>
+      <p style="font-size:0.8rem;color:var(--text-light);margin-top:4px">Your style, your account</p>
+    </div>
+    <div class="account-tabs">
+      <button class="account-tab active" onclick="switchTab(this,'login')">Sign In</button>
+      <button class="account-tab" onclick="switchTab(this,'register')">Create Account</button>
+    </div>
+    <div id="loginForm">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="••••••••">
+      </div>
+      <div style="text-align:right;margin-top:-8px;margin-bottom:16px"><span style="font-size:0.75rem;color:var(--gold);cursor:pointer">Forgot password?</span></div>
+      <button class="form-submit" onclick="showNotif('✦ Welcome back!');closeAccountModal({target:document.getElementById('accountModal')})">Sign In</button>
+      <div class="divider-text">or continue with</div>
+      <button class="form-submit" style="background:white;color:var(--text-dark);border:1px solid var(--border)" onclick="showNotif('✦ Google login coming soon')">G &nbsp; Continue with Google</button>
+    </div>
+    <div id="registerForm" style="display:none">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 98765 43210">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="Create password">
+      </div>
+      <button class="form-submit" onclick="showNotif('✦ Account created! Welcome to Wishly!');closeAccountModal({target:document.getElementById('accountModal')})">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notification" id="notification">
+  <span class="notification-icon">✦</span>
+  <span id="notifText">Added to cart!</span>
+</div>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const products = [
+  {id:1,name:'Sage Wrap Dress',type:'Dress',price:1849,oldPrice:2499,stock:5,bg:'product-img-1',badge:'sale',isNew:true,rating:5,reviews:48,sizes:['XS','S','M','L','XL'],desc:'A beautifully draped wrap dress crafted from breathable cotton-blend. Perfect for casual and semi-formal occasions.'},
+  {id:2,name:'Ivory Kurta Set',type:'Kurta',price:2299,oldPrice:null,stock:12,bg:'product-img-2',badge:'new',isNew:true,rating:5,reviews:31,sizes:['XS','S','M','L'],desc:'Elegant ivory cotton kurta with matching palazzo. Intricate embroidery detailing at the neckline.'},
+  {id:3,name:'Mauve Co-ord Set',type:'Co-ord',price:3149,oldPrice:3999,stock:3,bg:'product-img-3',badge:'low',isNew:true,rating:4,reviews:19,sizes:['S','M','L','XL'],desc:'Chic mauve linen co-ord set. Relaxed blazer with wide-leg trousers. Office to evening in one outfit.'},
+  {id:4,name:'Terracotta Midi',type:'Dress',price:1649,oldPrice:null,stock:18,bg:'product-img-4',badge:'new',isNew:true,rating:5,reviews:27,sizes:['XS','S','M','L','XL'],desc:'Flowy terracotta midi dress with smocked waist and tiered skirt. Made from sustainable cotton.'},
+  {id:5,name:'Forest Green Kurta',type:'Kurta',price:1999,oldPrice:2599,stock:8,bg:'product-img-5',badge:'sale',isNew:false,rating:4,reviews:55,sizes:['S','M','L'],desc:'Rich forest green A-line kurta with block print detailing. Pairs beautifully with white pants.'},
+  {id:6,name:'Cream Linen Shirt',type:'Tops',price:1249,oldPrice:null,stock:24,bg:'product-img-6',badge:'',isNew:false,rating:5,reviews:42,sizes:['XS','S','M','L','XL'],desc:'Relaxed fit linen shirt in warm cream. Versatile piece that works with anything in your wardrobe.'},
+  {id:7,name:'Cobalt Wrap Skirt',type:'Bottoms',price:1549,oldPrice:1999,stock:2,bg:'product-img-7',badge:'low',isNew:false,rating:4,reviews:16,sizes:['XS','S','M','L'],desc:'Stunning cobalt blue wrap skirt with gold button detail. Midi length with side slit.'},
+  {id:8,name:'Rose Pintuck Top',type:'Tops',price:999,oldPrice:null,stock:30,bg:'product-img-8',badge:'new',isNew:true,rating:5,reviews:8,sizes:['XS','S','M','L','XL'],desc:'Delicate rose-hued pintuck blouse. Beautiful ruffle trim at cuffs and collar. Easy to style.'},
+];
+
+let cartCount = 3;
+let wishlistCount = 2;
+let currentFilter = 'all';
+
+function renderProducts(containerId, items){
+  const grid = document.getElementById(containerId);
+  grid.innerHTML = items.map(p=>`
+    <div class="product-card" onclick="openModal(${p.id})">
+      <div class="product-img ${p.bg}">
+        <div class="product-silhouette"></div>
+        <div class="product-badges">
+          ${p.badge==='new'?'<span class="badge badge-new">New</span>':''}
+          ${p.badge==='sale'?'<span class="badge badge-sale">Sale</span>':''}
+          ${p.badge==='low'?'<span class="badge badge-low">Low Stock</span>':''}
+        </div>
+        <div class="product-actions">
+          <button class="btn-cart" onclick="event.stopPropagation();quickAdd(${p.id})">Quick Add</button>
+          <button class="btn-wish" onclick="event.stopPropagation();addToWishlist()">♡</button>
+        </div>
+      </div>
+      <div class="product-info">
+        ${p.isNew?'<span class="new-tag">Just In</span>':''}
+        <div class="product-name">${p.name}</div>
+        <div class="product-type">${p.type}</div>
+        <div class="product-price-row">
+          <div>
+            <span class="product-price">₹${p.price.toLocaleString()}</span>
+            ${p.oldPrice?`<span class="product-price-old">₹${p.oldPrice.toLocaleString()}</span>`:''}
+          </div>
+          <div class="product-stars">
+            <span class="stars">${'★'.repeat(p.rating)}${'☆'.repeat(5-p.rating)}</span>
+            <span class="review-count">(${p.reviews})</span>
+          </div>
+        </div>
+        ${p.stock<=8?`
+        <div class="stock-bar">
+          <div class="stock-label">Only ${p.stock} left</div>
+          <div class="stock-track"><div class="stock-fill" style="width:${(p.stock/20)*100}%"></div></div>
+        </div>`:'<div style="font-size:0.72rem;color:#3d7a57;margin-top:6px;font-weight:500">✓ In Stock</div>'}
+        <div class="size-dots">
+          ${p.sizes.map(s=>`<span class="size-dot">${s}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openModal(id){
+  const p = products.find(x=>x.id===id);
+  if(!p)return;
+  document.getElementById('modalName').textContent = p.name;
+  document.getElementById('modalType').textContent = p.type;
+  document.getElementById('modalPrice').textContent = '₹'+p.price.toLocaleString();
+  document.getElementById('modalOld').textContent = p.oldPrice?'₹'+p.oldPrice.toLocaleString():'';
+  document.getElementById('modalStock').textContent = p.stock<=8?`Only ${p.stock} left in stock`:'In Stock';
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalImg').style.background = '';
+  const colorMap={'product-img-1':'linear-gradient(135deg,#e8dcc8,#d4c09a)','product-img-2':'linear-gradient(135deg,#c5d5ca,#a8c0b0)','product-img-3':'linear-gradient(135deg,#d5c8d8,#bca8c0)','product-img-4':'linear-gradient(135deg,#d8c8be,#c0a898)','product-img-5':'linear-gradient(135deg,#cad5c8,#a8bda8)','product-img-6':'linear-gradient(135deg,#d8d0c8,#c0b8a8)','product-img-7':'linear-gradient(135deg,#c8d0d8,#a8b8c0)','product-img-8':'linear-gradient(135deg,#d8cac8,#c0a8a8)'};
+  document.getElementById('modalImg').style.background = colorMap[p.bg]||'var(--cream-dark)';
+  document.getElementById('productModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeProductModal(){
+  document.getElementById('productModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function closeModal(e){
+  if(e.target===document.getElementById('productModal')) closeProductModal();
+}
+
+function addToCart(){
+  cartCount++;
+  document.getElementById('cartBadge').textContent=cartCount;
+  closeProductModal();
+  showNotif('🛍 Added to your bag!');
+}
+
+function quickAdd(id){
+  cartCount++;
+  document.getElementById('cartBadge').textContent=cartCount;
+  const p=products.find(x=>x.id===id);
+  showNotif(`🛍 ${p.name} added to bag!`);
+}
+
+function addToWishlist(){
+  wishlistCount++;
+  document.getElementById('wishBadge').textContent=wishlistCount;
+  showNotif('♡ Added to wishlist!');
+}
+
+function openCart(){
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartSidebar').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeCart(){
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartSidebar').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function openAccount(){
+  document.getElementById('accountModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeAccountModal(e){
+  if(e.target===document.getElementById('accountModal')){
+    document.getElementById('accountModal').classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+
+function switchTab(btn,tab){
+  document.querySelectorAll('.account-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('loginForm').style.display=tab==='login'?'block':'none';
+  document.getElementById('registerForm').style.display=tab==='register'?'block':'none';
+}
+
+function openWishlist(){
+  showNotif('♡ Your wishlist: 2 saved styles');
+}
+
+function selectSize(btn){
+  document.querySelectorAll('.size-opt').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function setFilter(btn,cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter=cat;
+  const filtered=cat==='all'?products:products.filter(p=>p.type===cat||p.name.toLowerCase().includes(cat.toLowerCase()));
+  renderProducts('catalogGrid',filtered);
+}
+
+function filterCat(cat){
+  document.getElementById('catalog').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>{
+    const btns=document.querySelectorAll('.filter-btn');
+    btns.forEach(b=>{if(b.textContent.trim()===cat||b.onclick.toString().includes(cat))b.click()});
+  },600);
+}
+
+function sortProducts(val){
+  let sorted=[...products];
+  if(currentFilter!=='all')sorted=sorted.filter(p=>p.type===currentFilter);
+  if(val==='price-low')sorted.sort((a,b)=>a.price-b.price);
+  else if(val==='price-high')sorted.sort((a,b)=>b.price-a.price);
+  else if(val==='popular')sorted.sort((a,b)=>b.reviews-a.reviews);
+  renderProducts('catalogGrid',sorted);
+}
+
+function changeQty(btn,delta){
+  const numEl=btn.parentElement.querySelector('.qty-num');
+  let n=parseInt(numEl.textContent)+delta;
+  if(n<1)n=1;
+  numEl.textContent=n;
+}
+
+let notifTimer;
+function showNotif(msg){
+  clearTimeout(notifTimer);
+  document.getElementById('notifText').textContent=msg;
+  const el=document.getElementById('notification');
+  el.classList.add('show');
+  notifTimer=setTimeout(()=>el.classList.remove('show'),3000);
+}
+
+function handleSearch(input){
+  // suggestions always visible on focus
+}
+
+function searchItem(term){
+  document.getElementById('searchInput').value=term;
+  document.getElementById('searchWrap').classList.remove('active');
+  showNotif(`🔍 Searching for "${term}"...`);
+}
+
+// Back to top
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('backTop');
+  if(window.scrollY>400)btn.classList.add('show');
+  else btn.classList.remove('show');
+});
+
+// Init
+renderProducts('newArrivalsGrid', products.filter(p=>p.isNew));
+renderProducts('catalogGrid', products);
+</script>
+</body>
+</html>
